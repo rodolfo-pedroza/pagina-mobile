@@ -109,6 +109,7 @@
 			</div>
 			<div id="page-inner">
 				
+				<!-- vue component para cada intercambio que tenga el usuario -->
 				<div id="app">
 					<todo-item v-for="item in itemList" :todo="item" :key="item.id" :image="item.image"></todo-item>
 				</div>
@@ -151,6 +152,7 @@
 	<!-- Custom Js -->
 	<script src="assets/js/custom-scripts.js"></script>
 
+	<!-- script vue -->
 	<script>
 
 		Vue.component('todo-item',{
