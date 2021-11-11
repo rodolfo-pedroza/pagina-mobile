@@ -20,181 +20,188 @@
 	<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
 
 	<!-- vue -->
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		<script src="https://unpkg.com/vuex"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.2"></script>
+
 </head>
 
 <body>
-	<div id="wrapper">
-		<!-- Navbar -->
-		<nav class="navbar navbar-default top-navbar" role="navigation">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse"
-					data-target=".sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand waves-effect waves-dark" href="home.html"><i
-						class="large material-icons">card_giftcard</i> <strong>Home</strong></a>
-
-				<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
-			</div>
-			<ul class="nav">
-				<li>
-					<a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1">
-						<i class="fa fa-user fa-fw"></i> <b>{{user}}</b> 
-						<i class="material-icons right">arrow_drop_down</i>
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<!-- Dropdown Structure -->
-		<ul id="dropdown1" class="dropdown-content">
-			<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
-			</li>
-		</ul>
-		<!--/. NAV TOP  -->
-		<nav class="navbar-default navbar-side" role="navigation">
-			<div class="sidebar-collapse">
-				<ul class="nav" id="main-menu">
-
+	<div id="app">
+		<div id="wrapper">
+			<!-- Navbar -->
+			<nav class="navbar navbar-default top-navbar" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse"
+						data-target=".sidebar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand waves-effect waves-dark" href="home.html"><i
+							class="large material-icons">card_giftcard</i> <strong>Home</strong></a>
+	
+					<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+				</div>
+				<ul class="nav">
 					<li>
-						<a class="active-menu waves-effect waves-dark" href="home.html"><i
-								class="fa fa-gifts"></i>Home</a>
-					</li>
-					<li>
-						<a href="crearInter.html" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
-					</li>
-					<li>
-						<a href="amigos.html" class="waves-effect waves-dark"><i class="fa fa-user"></i>
-							Agregar Amigos</a>
-					</li>
-					<li>
-						<a href="infoInter.html" class="waves-effect waves-dark"><i class="fa fa-cog"></i> Modificar Intercambios</a>
-					</li>
-
-					<li>
-						<a href="intercambios.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i> Mis Intercambios</a>
-					</li>
-                                        <li>
-						<a href="invitaciones.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i>Invitaciones</a>
+						<a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1">
+							<i class="fa fa-user fa-fw"></i> <b>user</b> 
+							<i class="material-icons right">arrow_drop_down</i>
+						</a>
 					</li>
 				</ul>
-
-			</div>
-
-		</nav>
-		<!-- /. NAV SIDE  -->
-
-		<div id="page-wrapper">
-			<div class="header">
-				<h1 class="page-header">
-					Crear Intercambio
-				</h1>
-
-			</div>
-			<div id="page-inner">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="card">
-							<div class="card-action">
-								Datos del Intercambio 
-							</div>
-							<div class="card-content">
-								<form class="col s12">
-									<div class="row">
-										<div class="input-field col s12">
-											<input id="interName" type="text"
-												class="validate">
-											<label for="interName">Nombre del Intercambio</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group col s12">
-											<label for="tema">Selecciona un tema</label>
-											<select id="tema" class="form-control">
-												<option selected>Temas...</option>
-												<option>...</option>
-												<option>...</option>
-											  </select>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-field col s12">
-											<input id="monto" type="number" class="validate">
-											<label for="monto">Monto</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group col s12">
-											<div class='input-group date'>
-												<label for="fecha">Fecha de Intercambio</label>
-												<input type="date" id="fecha" name="trip-start" value="2021-12-25" min="2021-01-01" max="2030-12-31">
+			</nav>
+			<!-- Dropdown Structure -->
+			<ul id="dropdown1" class="dropdown-content">
+				<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
+				</li>
+			</ul>
+			<!--/. NAV TOP  -->
+			<nav class="navbar-default navbar-side" role="navigation">
+				<div class="sidebar-collapse">
+					<ul class="nav" id="main-menu">
+	
+						<li>
+							<a class="active-menu waves-effect waves-dark" href="home.html"><i
+									class="fa fa-gifts"></i>Home</a>
+						</li>
+						<li>
+							<a href="crearInter.html" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
+						</li>
+						<li>
+							<a href="amigos.html" class="waves-effect waves-dark"><i class="fa fa-user"></i>
+								Agregar Amigos</a>
+						</li>
+						<li>
+							<a href="infoInter.html" class="waves-effect waves-dark"><i class="fa fa-cog"></i> Modificar Intercambios</a>
+						</li>
+	
+						<li>
+							<a href="intercambios.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i> Mis Intercambios</a>
+						</li>
+											<li>
+							<a href="invitaciones.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i>Invitaciones</a>
+						</li>
+					</ul>
+	
+				</div>
+	
+			</nav>
+			<!-- /. NAV SIDE  -->
+	
+			<div id="page-wrapper">
+				<div class="header">
+					<h1 class="page-header">
+						Crear Intercambio
+					</h1>	
+				</div>
+				<div id="page-inner">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-action">
+									Datos del Intercambio 
+								</div>
+								<div class="card-content">
+									<form class="col s12">
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="interName" type="text"
+													class="validate">
+												<label for="interName">Nombre del Intercambio</label>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="form-group col s12">
-											<div class='input-group date'>
-												<label for="fechalimite">Fecha Limite de registro</label>
-												<input type="date" id="fechalimite" name="trip-start" value="2021-12-20" min="2021-01-01" max="2030-12-31">
+										<div class="row">
+											<div class="form-group col s12">
+												<label for="tema">Selecciona un tema</label>
+												<!-- display de temas con Vue -->
+												<select id="tema" class="form-control" v-model="selected">
+													<option disabled value="">Seleccione un tema</option>
+													<option v-for="tema in temas" :value="tema" >{{tema}}</option>
+												</select>
 											</div>
 										</div>
-									</div>
-									<div class="row">
-										<h4>Invita gente a tu Intercambio</h4>
-									</div>
-									<div class="row">
-										<div class="input-field col s12">
-											<input id="correoAmigo" type="text" class="validate">
-											<label for="correoAmigo">Correo</label>
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="monto" type="number" class="validate">
+												<label for="monto">Monto</label>
+											</div>
 										</div>
-										<div class="input-field col s12">
-											<input id="nombreAmigo" type="text" class="validate">
-											<label for="nombreAmigo">Nombre</label>
+										<div class="row">
+											<div class="form-group col s12">
+												<div class='input-group date'>
+													<label for="fecha">Fecha de Intercambio</label>
+													<input type="date" id="fecha" name="trip-start" value="2021-12-25" min="2021-01-01" max="2030-12-31">
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="row">
-										<a href="#" class="waves-effect waves-light btn">
-											<i class="material-icons right">add</i>
-											Agregar 
-										</a>
-									</div>
-									<div class="row">
-										<div class="form-group col s12">
-											<label for="tema">Agregar Amigos</label>
-											<select id="tema" class="form-control">
-												<option selected>Amigos...</option>
-												<option>...</option>
-												<option>...</option>
-											  </select>
+										<div class="row">
+											<div class="form-group col s12">
+												<div class='input-group date'>
+													<label for="fechalimite">Fecha Limite de registro</label>
+													<input type="date" id="fechalimite" name="trip-start" value="2021-12-20" min="2021-01-01" max="2030-12-31">
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="row">
-										<div class="form-group col s12">
-											<label for="comentarios">Comentarios</label>
-											<textarea name="comentarios" id="comentarios" cols="30" rows="5" class="form-control"></textarea>
+										<div class="row">
+											<h4>Invita gente a tu Intercambio</h4>
 										</div>
-									</div>
-									<div class="row">
-										<a href="intercambios.html" class="waves-effect waves-light btn">
-											<i class="material-icons right">navigate_next</i>
-											Crear Intercambio 
-										</a>
-									</div>
-								</form>
-								<div class="clearBoth"></div>
+										<!-- agregar fila con vue -->
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="correoAmigo" type="text" class="validate">
+												<label for="correoAmigo">Correo</label>
+											</div>
+											<div class="input-field col s12">
+												<input id="nombreAmigo" type="text" class="validate">
+												<label for="nombreAmigo">Nombre</label>
+											</div>
+										</div>
+										<div class="row">
+											<a href="#" class="waves-effect waves-light btn">
+												<i class="material-icons right">send</i>
+												Invitar 
+											</a>
+										</div>
+										<!-- agregar amigos utilizando vue, se crea un arreglo de invitados -->
+										<div class="row">
+											<div class="col s6">
+												<h4 v-if="selected">Invitados</h4>
+												<p v-for="invitado in invitados">{{invitado}}</p>												
+											</div>
+											<div class="form-group col s12">
+												<!-- display de amigos del usuario usando Vue, se tiene que conectar a la BD  -->
+												<label for="tema">Agregar Amigos</label>
+												<select id="tema" class="form-control" v-model="selected">
+													<option disabled value="" >Agregar Amigos</option>
+													<option v-for="amigo in amigos" :value="amigo" @click="agregar(amigo)">{{amigo}}</option>
+												</select>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col s12">
+												<label for="comentarios">Comentarios</label>
+												<textarea name="comentarios" id="comentarios" cols="30" rows="5" class="form-control"></textarea>
+											</div>
+										</div>
+										<div class="row">
+											<a href="intercambios.html" class="waves-effect waves-light btn">
+												<i class="material-icons right">navigate_next</i>
+												Crear Intercambio 
+											</a>
+										</div>
+									</form>
+									<div class="clearBoth"></div>
+								</div>
 							</div>
 						</div>
 					</div>
+					<!-- /. PAGE WRAPPER  -->
 				</div>
-				<!-- /. PAGE WRAPPER  -->
+				<!-- /. PAGE INNER  -->
 			</div>
-			<!-- /. PAGE INNER  -->
+			<!-- /. PAGE WRAPPER  -->
 		</div>
-		<!-- /. PAGE WRAPPER  -->
 	</div>
 	<!-- /. WRAPPER  -->
 	<!-- JS Scripts-->
@@ -220,6 +227,10 @@
 
 	<!-- Custom Js -->
 	<script src="assets/js/custom-scripts.js"></script>
+
+	<!-- Vue script -->
+	<script src="./js/crearIntApp.js"></script>
+	
 </body>
 
 </html>
