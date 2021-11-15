@@ -48,10 +48,10 @@ const app = Vue.createApp({
             numero -= 1
             if(numero > -1){
                 this.invitados.splice(numero,1)
-                for (var i = numero; i <= this.invitados.length; i++) {
+                for (var i = numero; i < this.invitados.length; i++) {
                     if(i <= this.invitados[i].id){ 
                         this.invitados[i].id-=1
-                    }              
+                    }         
                 }
             }
         },
