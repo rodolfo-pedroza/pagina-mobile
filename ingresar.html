@@ -21,13 +21,13 @@
         <div class="image-holder">
           <img src="images/rega.jpg" alt="" />
         </div>
-        <form action="">
+        <form action="validar.php" method="post">
           <h3>Ingresar</h3>
           <div class="form-group">
-            <input type="text" placeholder="Alias" class="form-control" />
+            <input type="text" placeholder="Alias" class="form-control" name="alias" />
           </div>
           <div class="form-wrapper">
-            <input type="text" placeholder="Usuario" class="form-control" />
+            <input type="text" placeholder="Usuario" class="form-control" name="usuario"/>
             <i class="zmdi zmdi-account"></i>
           </div>
           <div class="form-wrapper">
@@ -35,14 +35,16 @@
               type="password"
               placeholder="Contraseña"
               class="form-control"
+              name = "password";
             />
             <i class="zmdi zmdi-lock"></i>
           </div>
 
-          <button>
+          <input type="submit" value="Ingresar">
+          <!-- <button>
             <a href="home.html" style="color: white">Ingresar</a>
             <i class="zmdi zmdi-arrow-left"></i>
-          </button>
+          </button> -->
 
           <button>
             <a href="registro.html" style="color: white">Registrarse</a>
