@@ -8,6 +8,7 @@ const app = Vue.createApp({
             monto: 500,
             fechalimite: '2021-12-18',
             fechaIntercambio: '2021-12-25',
+            clave: 'IntercambioPardo12-25',
             invitados: [
                 {id: 1, nombre: 'rodo', correo: 'ejemplo@gmail.com'},
                 {id: 2, nombre: 'arturo', correo: 'ejemplo1@gmail.com'},
