@@ -151,17 +151,27 @@
               
                                 Fecha limite
                                 <div class="row">
-                                    <div class="input-field col s12">
-                                    <input disabled value="No editable" id="disabled" type="text" class="validate">
+                                    <div class="input-field col s10">
+                                        <input type="date" id="fechalimite" v-model="fechalimite" min="2021-01-01" max="2030-12-31">
+                                        <!-- <input disabled value="No editable" id="disabled" type="text" class="validate"> -->
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <a id="edit1" class="waves-effect waves-light btn btn-primary" @click="cambiarFecha(fechalimite)">
+                                            <i class="material-icons right">edit</i>
+                                        </a>
                                     </div>
                                 </div>
               
               
                                 Fecha del intercambio
                                 <div class="row">
-                                    <div class="input-field col s12">
-                                    <input disabled value="No editable" id="disabled" type="text" class="validate">
-                
+                                    <div class="input-field col s10">
+                                        <input type="date" id="fechalimite" v-model="fechaIntercambio" min="2021-01-01" max="2030-12-31">                
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <a id="edit1" class="waves-effect waves-light btn btn-primary" @click="cambiarFechaIntercambio(fechaIntercambio)">
+                                            <i class="material-icons right">edit</i>
+                                        </a>
                                     </div>
                                 </div>
                               <!-- </form>-->
@@ -176,19 +186,21 @@
                             </div>
                             <div class="card-content">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
+                                    <table class="table table-striped table-bordered table-hover" >
                                         <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nombre</th>
-                                                <th>Correo</th>          
+                                                <th>Correo</th>     
+                                                <th>Eliminar</th>     
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Mark</td>
-                                                <td>Mac@hotmail.com</td>
+                                        <tbody v-for="invitado in invitados">
+                                            <tr >
+                                                <td>{{invitado.id}}</td>
+                                                <td>{{invitado.nombre}}</td>
+                                                <td>{{invitado.correo}}</td>
+                                                <td> <a class="waves-effect waves-light btn btn-danger" @click="eliminarInvitado(invitado.id)"><i class="material-icons right">delete</i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -204,15 +216,20 @@
                             </div>          
                             <div class="card-content">
                                 <div class="row">
-                                    <div class="form-group col s12">
+                                    <div class="form-group col s10">
                                         <label for="comentarios">Comentarios</label>
-                                        <textarea disabled value="No editable" name="comentarios" id="comentarios" cols="30" rows="5" class="form-control"></textarea>
+                                        <textarea v-model="comentarios" name="comentarios" id="comentarios" cols="30" rows="5" class="form-control"></textarea>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <a id="edit1" class="waves-effect waves-light btn btn-primary" @click="cambiarComentarios(comentarios)">
+                                            <i class="material-icons right">edit</i>
+                                        </a>
                                     </div>
                                 </div>
                             <div class="row">
-                                <a class="waves-effect waves-light btn btn-primary">
-                                  <i class="material-icons right">edit</i>
-                                  Editar
+                                <a class="waves-effect waves-light btn btn-primary" @click="guardarCambios">
+                                  <i class="material-icons right">check</i>
+                                  Guardar Cambios
                                 </a>
                             </div>
                         </div>
