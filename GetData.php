@@ -1,0 +1,26 @@
+<?php
+
+    session_start();
+    $usuario = $_SESSION['Usuario'];
+
+    include('db.php');
+    //Conectar con usuario
+    //$alias=$_SESSION["alias"];
+
+    $sql = "SELECT Usuario, Alias, Correo FROM tb_usuarios where Usuario = '$usuario'";
+    $res = mysqli_query($conexion, $sql) or die("No se encontro");
+    //echo "<h1>$res</h1>";
+    //echo "El usuario es: $usuario";
+    if (mysqli_num_rows($res) > 0){
+        while($row = mysqli_fetch_assoc($res)){
+            //echo "Usuario: ".$row["Usuario"]. "<br>" . "Alias: ".$row["Alias"]. "<br>" ;
+            $usuario = $row["Usuario"];
+            $alias = $row["Alias"];
+            $correo = $row["Correo"];
+        }
+    }else {
+        echo "0 results";
+    }    
+    mysqli_close($conexion);
+
+?>

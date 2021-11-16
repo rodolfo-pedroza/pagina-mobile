@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿<?php
+	session_start();
+	error_reporting(0);
+	$varsesion = $_SESSION['Usuario'];
+	if($varsesion==null || $varsesion==""){
+		header("location: index.html");
+		die();
+	}
+
+?>
+
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
@@ -57,7 +69,10 @@
 			<ul class="nav">
 				<li>
 					<a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1">
-						<i class="fa fa-user fa-fw"></i> <b>{{user}}</b> 
+						<?php
+							include('GetData.php');
+						?>
+						<i class="fa fa-user fa-fw"></i> <b><?php echo $usuario. " Correo: ".$correo . " Alias: ". $alias ; ?></b> 
 						<i class="material-icons right">arrow_drop_down</i>
 					</a>
 				</li>
@@ -65,7 +80,7 @@
 		</nav>
 		<!-- Dropdown Structure -->
 		<ul id="dropdown1" class="dropdown-content">
-			<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
+			<li><a href="Log_Out.php"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
 			</li>
 		</ul>
 		<!--/. NAV TOP  -->

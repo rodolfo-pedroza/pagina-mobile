@@ -5,17 +5,17 @@
     $alias = $_POST['alias'];
 
     session_start();
-    $_SESSION['usuario']= $usuario;
+    $_SESSION['Usuario']= $usuario;
 
     include('db.php');
 
-    $consulta = "SELECT*FROM usuarios where alias = '$alias' and usuario='$usuario' and password='$password'";
+    $consulta = "SELECT*FROM tb_usuarios where Alias = '$alias' and Usuario='$usuario' and Contraseña='$password'";
     $result = mysqli_query($conexion, $consulta);
 
     $filas = mysqli_num_rows($result);
 
     if($filas){
-        header("location:home.html");
+        header("location:home.php");
     }
     else{
         ?>

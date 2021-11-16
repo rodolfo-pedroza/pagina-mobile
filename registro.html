@@ -21,17 +21,17 @@
         <div class="image-holder">
           <img src="images/interre.jpg" alt="" />
         </div>
-        <form action="">
+        <form action="registro.php" method="post">
           <h3>Registro</h3>
           <div class="form-group">
-            <input type="text" placeholder="Alias" class="form-control" />
+            <input type="text" placeholder="Alias" class="form-control" name="alias"/>
           </div>
           <div class="form-wrapper">
-            <input type="text" placeholder="Usuario" class="form-control" />
+            <input type="text" placeholder="Usuario" class="form-control" name="usuario"/>
             <i class="zmdi zmdi-account"></i>
           </div>
           <div class="form-wrapper">
-            <input type="text" placeholder="Correo" class="form-control" />
+            <input type="text" placeholder="Correo" class="form-control" name="correo"/>
             <i class="zmdi zmdi-email"></i>
           </div>
           <div class="form-wrapper">
@@ -39,22 +39,24 @@
               type="password"
               placeholder="Contraseña"
               class="form-control"
+              name="password"
             />
             <i class="zmdi zmdi-lock"></i>
           </div>
-          <div class="form-wrapper">
+          <!-- <div class="form-wrapper">
             <input
               type="password"
               placeholder="Confirmar contraseña"
               class="form-control"
             />
             <i class="zmdi zmdi-lock"></i>
-          </div>
+          </div> -->
 
-          <button>
-			<a href="user.html" style="color: white">Registrar</a>
+          <!-- <button>
+			    <a href="user.html" style="color: white">Registrar</a>
             <i class="zmdi zmdi-arrow-right"></i>
-          </button>
+          </button> -->
+          <input type="submit" value="Registrarse">
 
           <button>
             <a href="ingresar.html" style="color: white">Volver a Ingresar</a>
