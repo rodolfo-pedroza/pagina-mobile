@@ -40,7 +40,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand waves-effect waves-dark" href="home.html"><i
+					<a class="navbar-brand waves-effect waves-dark" href="home.php"><i
 							class="large material-icons">card_giftcard</i> <strong>Home</strong></a>
 	
 					<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>

@@ -89,11 +89,11 @@
 				<ul class="nav" id="main-menu">
 
 					<li>
-						<a class="active-menu waves-effect waves-dark" href="home.html"><i
+						<a class="active-menu waves-effect waves-dark" href="home.php"><i
 								class="fa fa-gifts"></i>Home</a>
 					</li>
 					<li>
-						<a href="crearInter.html" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
+						<a href="crearInter.php" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
 					</li>
 					<li>
 						<a href="amigos.html" class="waves-effect waves-dark"><i class="fa fa-user"></i>
@@ -116,6 +116,7 @@
 		</nav>
 		<!-- /. NAV SIDE  -->
 
+		
 		<div id="page-wrapper">
 			<div class="header">
 				<h1 class="page-header">
@@ -131,7 +132,10 @@
 
                                     </div>
                                     <div class="card-content">
-                                  
+									
+									<!-- <div class='tableauPlaceholder' id='viz1637196375812' style='position: relative'><noscript><a href='#'><img alt='Zonas_Contaminación ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;Crimepoll_v2&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Crimepoll_v2&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;Crimepoll_v2&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1637196375812');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+
+										<div class='tableauPlaceholder' id='viz1637195906232' style='position: relative'><noscript><a href='#'><img alt='Mayores_Contaminantes ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;Crimepoll_v2&#47;Sheet2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Crimepoll_v2&#47;Sheet2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Cr&#47;Crimepoll_v2&#47;Sheet2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1637195906232');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script> -->
                                            <!-- <div class="row">
                                                 <div class="col-md-8 col-sm-8">
                                                         <div class="card " style="width: 30rem ; margin-left: auto; margin-right: auto;">
@@ -148,6 +152,7 @@
                                            <div class="card-image waves-effect waves-block waves-light">
                                                                         <img src="./images/Bienve.jpeg" alt="iconobase">
                                                                 </div>
+																
                                         <div class="row">
                                                     <div class="col-md-4 col-sm-4">
                                                        <div class="card blue-grey darken-1">
