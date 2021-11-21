@@ -57,12 +57,18 @@ const app = Vue.createApp({
             }
         },
         guardarCambios: function(){
-            console.log(` ${this.nombreIntercambio} ${this.selected} ${this.monto} ${this.fechalimite} ${this.fechaIntercambio} ${this.comentarios}`)
-            this.invitados.forEach(element => {
-                console.log(element.id)
-                console.log(element.nombre)
-                console.log(element.correo)
-            });
+            axios.post('getData.php', {
+                action:'insert',
+                nombreIntercambio: this.nombreIntercambio
+            })
+            .then(function(response){
+                // console.log('se mando')
+                console.log(response.data.message)
+            })
+            .catch(function(error){
+                console.log(error)
+                console.log('error')
+            })
         }
     },
     // components: {

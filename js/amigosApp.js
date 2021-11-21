@@ -15,15 +15,22 @@ const app = Vue.createApp({
     },
     methods: {
         agregarAmigo: function (nombre,email){
-            if(this.amigos.length==0){
-                lastId = 0
-            }else{
-                last = this.amigos[this.amigos.length -1]
-                lastId = last.id
-            }
-            this.amigos.push({id: lastId+=1, nombre: nombre, correo: email})
-            this.nombre= ''
-            this.email= ''
+            // if(this.amigos.length==0){
+            //     lastId = 0
+            // }else{
+            //     last = this.amigos[this.amigos.length -1]
+            //     lastId = last.id
+            // }
+            // this.amigos.push({id: lastId+=1, nombre: nombre, correo: email})
+            // this.nombre= ''
+            // this.email= ''
+            axios.post('amigosDB.php',{
+                action: 'check',
+                nombreAmigo: nombre,
+                correoAmigo: email
+            }).then(function(response){
+                alert(response.data.id)
+            })
         },
         eliminarAmigo: function(numero){
             numero -= 1
