@@ -26,20 +26,19 @@ const app = Vue.createApp({
                 this.nombre= '',
                 this.email='',
                 this.fecthAllData()
-                console.log(allData[0].Usuario)
                 alert(response.data.message)
             })
         },
-        // eliminarAmigo: function(numero){
-        //     numero -= 1
-        //     this.amigos.splice(numero,1)
-        //     for (var i = numero; i < this.amigos.length; i++) {
-        //         if(i <= this.amigos[i].id){ 
-        //             this.amigos[i].id-=1
-        //         }         
-        //     }
+        eliminarAmigo: function(idlogin){
+           axios.post('amigosDB.php',{
+               action: 'delete',
+               IDLOGIN: idlogin
+           }).then(response => {
+               this.fecthAllData()
+               alert(response.data.message)
+           })
             
-        // },
+        },
     },
     created(){
         this.fecthAllData()

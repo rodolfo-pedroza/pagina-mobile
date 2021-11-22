@@ -63,9 +63,19 @@
 
             $output = array(
                 'message' => 'Amigo agregado',
-                'nombre' => $idUsuario
             );
             echo json_encode($output);
         }
+    };
+    if($receveid_data->action == 'delete'){
+        $IDLOGIN = $receveid_data->IDLOGIN;
+
+        $query = "DELETE FROM tb_amigos WHERE IDLOGINAMIGO = '".$IDLOGIN."';";
+        $resultado = mysqli_query($conexion, $query);
+
+        $output = array(
+            'message' => 'Amigo Eliminado',
+        );
+        echo json_encode($output);
     };
 ?>

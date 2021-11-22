@@ -156,7 +156,7 @@
 											<tr v-for="amigo in allData">
 												<td>{{amigo.Usuario}}</td>
 												<td>{{amigo.Correo}}</td>
-												<td> <a class="waves-effect waves-light btn btn-danger" @click="eliminarAmigo(amigo.id)"><i class="material-icons right">delete</i></a></td>
+												<td> <a class="waves-effect waves-light btn btn-danger" @click="eliminarAmigo(amigo.IDLOGIN)"><i class="material-icons right">delete</i></a></td>
 											</tr>
 											
 										</tbody>
