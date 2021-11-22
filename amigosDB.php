@@ -52,16 +52,18 @@
 
         while($row = mysqli_fetch_assoc($resultado)){
             $idAmigo = $row["IDLOGINAMIGO"];
-            $query = "SELECT * FROM tb_usuarios WHERE IDLOGIN ='".$idAmigo."'";
-            $resultado = mysqli_query($conexion, $query);
-            while($row = mysqli_fetch_assoc($resultado)){
-                foreach($resultado as $row){
-                    $data['idAmigo'] = $row['IDLOGIN'];
-                    $data['nombreAmigo'] = $row['Usuario'];
-                    $data['passAmigo'] = $row['Contraseña'];
-                    $data['aliasAmigo'] = $row['Alias'];
-                    $data['correoAmigo'] = $row['Correo'];
-                }
+            // $data[] = $idAmigo;
+            $consulta = "SELECT * FROM tb_usuarios WHERE IDLOGIN ='".$idAmigo."'";
+            $res = mysqli_query($conexion, $consulta);
+            while($row1 = mysqli_fetch_assoc($res)){
+                // foreach($resultado as $row){
+                //     $data['idAmigo'] = $row['IDLOGIN'];
+                //     $data['nombreAmigo'] = $row['Usuario'];
+                //     $data['passAmigo'] = $row['Contraseña'];
+                //     $data['aliasAmigo'] = $row['Alias'];
+                //     $data['correoAmigo'] = $row['Correo'];
+                // }
+                $data[] = $row1;
             }
         }
         echo json_encode($data);

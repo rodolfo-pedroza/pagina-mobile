@@ -13,7 +13,7 @@ const app = Vue.createApp({
                 action: 'fetchall'
             }).then(function(response){
                 this.allData = response.data
-                console.log(this.allData.idAmigo)
+                console.log(this.allData)
             })
         },
         agregarAmigo: function (nombre,email){
