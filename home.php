@@ -96,7 +96,7 @@
 						<a href="crearInter.php" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
 					</li>
 					<li>
-						<a href="amigos.html" class="waves-effect waves-dark"><i class="fa fa-user"></i>
+						<a href="amigos.php" class="waves-effect waves-dark"><i class="fa fa-user"></i>
 							Agregar Amigos</a>
 					</li>
 					<li>

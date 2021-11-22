@@ -11,9 +11,11 @@
     $fechaLimite = $_POST['trip-start-l'];
     $comentarios = $_POST['comentarios'];
     $clave = substr($tema,0,3).substr($nombreIntercambio,0,3).substr($tema,4).substr($nombreIntercambio,4);
+    // $participantes =$_POST['participantes'];
     include('GetData.php');
     include('db.php');
     $idUsuario = $idLogin;
+    
 
     $query = "INSERT INTO tb_intercambio (CLAVE, NOMBRE, TEMA, MONTO, FECHALIMITE, FECHAINTERCAMBIO, COMENTARIO, IDLOGIN)
     VALUES ('$clave', '$nombreIntercambio', '$tema', '$monto', '$fechaLimite', '$fechaIntercambio', '$comentarios', '$idUsuario');";

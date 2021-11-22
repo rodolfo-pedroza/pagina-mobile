@@ -24,6 +24,8 @@
 	<!-- axios -->
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+	
+
 
 </head>
 
@@ -75,7 +77,7 @@
 							<a href="crearInter.php" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
 						</li>
 						<li>
-							<a href="amigos.html" class="waves-effect waves-dark"><i class="fa fa-user"></i>
+							<a href="amigos.php" class="waves-effect waves-dark"><i class="fa fa-user"></i>
 								Agregar Amigos</a>
 						</li>
 						<li>
@@ -122,7 +124,10 @@
 												<!-- display de temas con Vue -->
 												<select id="tema" class="form-control" v-model="tema" name="tema">
 													<option disabled value="">Seleccione un tema</option>
-													<option v-for="tema in temas" :value="tema" >{{tema}}</option>
+													<!-- <option v-for="tema in temas" :value="tema" >{{tema}}</option> -->
+													<option value="Navidad">Navidad</option>
+													<option value="Navidad">Año Nuevo</option>
+													<option value="Navidad">Cumpleaños</option>
 												</select>
 											</div>
 										</div>
@@ -148,9 +153,9 @@
 												</div>
 											</div>
 										</div>
-										<div class="row">
+										<!-- <div class="row">
 											<h4>Invita gente a tu Intercambio</h4>
-										</div>
+										</div> -->
 										<!-- agregar fila con vue -->
 										<!-- <div class="row">
 											<div class="input-field col s12">
@@ -169,17 +174,29 @@
 											</a>
 										</div> -->
 										<!-- agregar amigos utilizando vue, se crea un arreglo de invitados -->
-										<div class="row">
+										<!-- <div class="row">
 											<div class="form-group col s12">
-												<!-- display de amigos del usuario usando Vue, se tiene que conectar a la BD  -->
+												
 												<label for="tema">Agregar Amigos</label>
-												<select id="tema" class="form-control" @change="agregarAmigo">
+												<select id="tema" class="form-control" multiple="true" name="participantes" class="mul-select">
 													<option disabled value="" >Agregar Amigos</option>
-													<option v-for="amigo in amigos" :value="amigo.nombre" >{{amigo.nombre}}</option>
+													<option v-for="amigo in allData" :value="amigo.Usuario" >{{amigo.Usuario}}</option>
 												</select>
 											</div>
-										</div>
-										<div class="row">
+										</div> -->
+
+										<!-- <div class="row">
+											<div class="form-group col s12">
+												isplay de amigos del usuario usando Vue, se tiene que conectar a la BD 
+												<label for="tema">Amigos agregados</label>
+												<select id="tema" class="form-control" multiple>
+													<option disabled value="" >Agregar Amigos</option>
+													<option v-for="amigo in allData" :value="amigo.Usuario" >{{amigo.Usuario}}</option>
+												</select>
+											</div>
+										</div> -->
+								
+										<!-- <div class="row">
 											<div class="table-responsive">
 												<table class="table table-striped table-bordered table-hover" >
 													<thead>
@@ -194,13 +211,45 @@
 													</tbody>
 												</table>
 										</div>
-										</div>
+										</div> -->
 										<div class="row">
 											<div class="form-group col s12">
 												<label for="comentarios">Comentarios</label>
 												<textarea v-model="comentarios" name="comentarios" id="comentarios" cols="30" rows="5" class="form-control"></textarea>
 											</div>
 										</div>
+										
+						 <!--   Tabla  -->
+						<!-- <div class="card">
+							<div class="card-action">
+								Lista de Amigos
+							</div>
+							<div class="card-content">
+								<div class="table-responsive">
+									<table  class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>Nombre</th>
+												<th>Correo</th>
+												<th>Eliminar</th>
+											</tr>
+										</thead>
+										<tbody >
+											<tr v-for="amigo in allData">
+												<td>{{amigo.Usuario}}</td>
+												<td>{{amigo.Correo}}</td>
+												<td> <a class="waves-effect waves-light btn btn-danger" @click="eliminarAmigo(amigo.IDLOGIN)"><i class="material-icons right">delete</i></a></td>
+												<td> <a class="waves-effect waves-light btn btn-success" @click="eliminarAmigo(amigo.IDLOGIN)"><i class="material-icons right">delete</i></a></td>
+											</tr>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							
+						</div> -->
+						  <!-- End  Basic Table  -->
+					
 										<div class="row">
 											<!-- <a href="#" class="waves-effect waves-light btn" @click="insertData">
 												<i class="material-icons right">navigate_next</i>
@@ -208,6 +257,8 @@
 											</a> -->
 											<!-- <a class="waves-effect waves-light btn " @click="agregarIntercambio(nombreIntercambio,tema, monto, fechaIntercambio, fechaLimite, comentarios)"><i class="material-icons right">navigate_next</i>Crear Intercambio </a> -->
 											<input class="waves-effect waves-light btn " type="submit" value="Crear Intercambio">
+											
+											<!-- <a class="waves-effect waves-light btn " @click="agregarAmigo(nombre,email)"><i class="material-icons right">done</i>Agregar</a> -->
 										</div>
 									</form>
 									<div class="clearBoth"></div>
@@ -248,7 +299,8 @@
 	<script src="assets/js/custom-scripts.js"></script>
 
 	<!-- Vue script -->
-	<script src="./js/crearIntApp.js"></script>
+	<script src="./js/amigosApp.js"></script>
+	
 	<!-- <script src="./js/CrearIntercambioApp.js"></script> -->
 	
 </body>

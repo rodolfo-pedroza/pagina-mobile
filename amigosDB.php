@@ -78,4 +78,58 @@
         );
         echo json_encode($output);
     };
+    if($receveid_data->action == 'deleteInvi'){
+        $IDLOGIN = $receveid_data->IDLOGIN;
+        $IDINTERCAMBIO = $receveid_data->IDINTERCAMBIO;
+
+        $query = "DELETE FROM tb_participantes WHERE IDPARTICIPANTE = '".$IDLOGIN."' and IDINTERCAMBIO = '".$IDINTERCAMBIO."';";
+        $resultado = mysqli_query($conexion, $query);
+
+        $output = array(
+            'message' => 'Participante Eliminado',
+            'idinter' => $IDINTERCAMBIO,
+        );
+        echo json_encode($output);
+    };
+    if($receveid_data->action == 'addToInter'){
+        $IDLOGINparticipante = $receveid_data->IDLOGIN;
+        $IDINTERCAMBIO = $receveid_data->IDINTERCAMBIO;
+
+        $query = "INSERT INTO tb_participantes (IDPARTICIPANTE, IDINTERCAMBIO)
+        VALUES ('$IDLOGINparticipante', '$IDINTERCAMBIO');"; 
+        $resultado = mysqli_query($conexion, $query);
+
+        $output = array(
+            'message' => 'Amigo agregado al intercambio',
+            'idinter' => $IDINTERCAMBIO,
+        );
+        echo json_encode($output);
+    };
+    if($receveid_data->action == 'fetchparticipantes'){
+
+        
+        $IDINTERCAMBIO = $receveid_data->IDINTERCAMBIO;
+        $query = "SELECT IDPARTICIPANTE FROM tb_participantes WHERE IDINTERCAMBIO='".$IDINTERCAMBIO."';";
+
+        $resultado = mysqli_query($conexion, $query);
+
+        while($row = mysqli_fetch_assoc($resultado)){
+            $idPartiInter = $row["IDPARTICIPANTE"];
+            // $data[] = $idAmigo;
+            $consulta = "SELECT * FROM tb_usuarios WHERE IDLOGIN ='".$idPartiInter."'";
+            $res = mysqli_query($conexion, $consulta);
+            while($row1 = mysqli_fetch_assoc($res)){
+                // foreach($resultado as $row){
+                //     $data['idAmigo'] = $row['IDLOGIN'];
+                //     $data['nombreAmigo'] = $row['Usuario'];
+                //     $data['passAmigo'] = $row['Contraseña'];
+                //     $data['aliasAmigo'] = $row['Alias'];
+                //     $data['correoAmigo'] = $row['Correo'];
+                // }
+                $data[] = $row1;
+            }
+        }
+        echo json_encode($data);
+        
+    };
 ?>

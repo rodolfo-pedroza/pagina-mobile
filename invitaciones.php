@@ -1,12 +1,14 @@
 ﻿<?php
-    ini_set('displays_errors', 1);
+
+    if(isset($_POST['Inputinter'])){
+      ini_set('displays_errors', 1);
     error_reporting(E_ALL);
 
     include('db.php');
 
     $clave = $_POST['clave'];
     //echo $clave;
-    $sql = "SELECT tb_intercambio.NOMBRE, tb_intercambio.TEMA, tb_intercambio.MONTO, tb_intercambio.FECHALIMITE, tb_intercambio.FECHAINTERCAMBIO, tb_intercambio.COMENTARIO, tb_intercambio.IDLOGIN, tb_usuarios.Usuario, tb_usuarios.Correo FROM tb_intercambio join tb_usuarios on tb_intercambio.IDLOGIN = tb_usuarios.IDLOGIN where tb_intercambio.CLAVE = '$clave'";
+    $sql = "SELECT tb_intercambio.IDINTERCAMBIO, tb_intercambio.NOMBRE, tb_intercambio.TEMA, tb_intercambio.MONTO, tb_intercambio.FECHALIMITE, tb_intercambio.FECHAINTERCAMBIO, tb_intercambio.COMENTARIO, tb_intercambio.IDLOGIN, tb_usuarios.Usuario, tb_usuarios.Correo FROM tb_intercambio join tb_usuarios on tb_intercambio.IDLOGIN = tb_usuarios.IDLOGIN where tb_intercambio.CLAVE = '$clave'";
     $res = mysqli_query($conexion, $sql) or die("No se encontro");
     
     if (mysqli_num_rows($res) > 0){
@@ -21,14 +23,31 @@
             $IDLOGIN = $row["IDLOGIN"];
             $usuarioInvi = $row["Usuario"];
             $correoInvi = $row["Correo"];
+            $IDINTERCAMBIO = $row["IDINTERCAMBIO"];
+
+            // $consulta = "SELECT IDPARTICIPANTE FROM tb_participantes WHERE IDINTERCAMBIO='".$IDINTERCAMBIO."'";
+            // $response1 = mysqli_query($conexion, $consulta);
+            // while($row1 = mysqli_fetch_assoc($response1)){
+            //     // foreach($resultado as $row){
+            //     //     $data['idAmigo'] = $row['IDLOGIN'];
+            //     //     $data['nombreAmigo'] = $row['Usuario'];
+            //     //     $data['passAmigo'] = $row['Contraseña'];
+            //     //     $data['aliasAmigo'] = $row['Alias'];
+            //     //     $data['correoAmigo'] = $row['Correo'];
+            //     // }
+            //     $dataInter[] = $row1;
+            // }
             //$contra = $row["Contraseña"];
         }
     }else {
         echo "0 results";
     }
+
     //echo "Grande";
     //header("location: invitaciones.php");    
     mysqli_close($conexion);
+    }
+    
 
 
 ?>
@@ -53,6 +72,8 @@
   <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
   <!-- vue -->
   <script src="https://cdn.jsdelivr.net/npm/vue@3.0.2"></script>
+  <!-- axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
   <style type="text/css">
@@ -119,7 +140,7 @@
               <a href="crearInter.php" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
             </li>
             <li>
-              <a href="amigos.html" class="waves-effect waves-dark"><i class="fa fa-user"></i>
+              <a href="amigos.php" class="waves-effect waves-dark"><i class="fa fa-user"></i>
                 Agregar Amigos</a>
             </li>
             <li>
@@ -170,7 +191,7 @@
                         <input id="interName" type="text" class="validate" name="clave" value="<?php echo (isset($clave))?$clave:'';?>">
                         <label for="interClave">Clave del intercambio</label>
                       </div>
-                      <input class="waves-effect waves-light btn" type="submit" value="Consultar Invitación">
+                      <input class="waves-effect waves-light btn" type="submit" value="Consultar Invitación" name="Inputinter">
                   </form>
   
   
@@ -245,6 +266,69 @@
   
             </div>
             <div class="col-md-6">
+						 <!--   Tabla  -->
+						<div class="card">
+							<div class="card-action">
+								Lista de Amigos
+							</div>
+							<div class="card-content">
+								<div class="table-responsive">
+									<table  class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>Nombre</th>
+												<th>Correo</th>
+												<th>Eliminar</th>
+											</tr>
+										</thead>
+										<tbody >
+											<tr v-for="amigo in allData">
+												<td>{{amigo.Usuario}}</td>
+												<td>{{amigo.Correo}}</td>
+												<td> <a class="waves-effect waves-light btn btn-success" @click="agregarAmigoToInter(amigo.IDLOGIN,<?php echo (isset($IDINTERCAMBIO))?$IDINTERCAMBIO:'';?>)"><i class="material-icons right">add</i></a></td>
+											</tr>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							
+						</div>
+						  <!-- End  Basic Table  -->
+					</div>
+          <div class="col-md-6">
+						 <!--   Tabla  -->
+						<div class="card">
+							<div class="card-action">
+								Lista de Participantes
+							</div>
+							<div class="card-content">
+								<div class="table-responsive">
+									<table  class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>Nombre</th>
+												<th>Correo</th>
+												<th>Eliminar</th>
+											</tr>
+										</thead>
+										<tbody >
+											<tr v-for="parti in DataPartiInter">
+												<td>{{parti.Usuario}}</td>
+												<td>{{parti.Correo}}</td>
+												<td> <a class="waves-effect waves-light btn btn-danger" @click="eliminarInvitado(parti.IDLOGIN,<?php echo (isset($IDINTERCAMBIO))?$IDINTERCAMBIO:'';?>)"><i class="material-icons right">delete</i></a></td>
+											</tr>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+							
+						</div>
+						  <!-- End  Basic Table  -->
+					</div>
+
+          <div class="col-md-6">
               <!--   Tabla  -->
               <div class="card">
                 <div class="card-action">
@@ -255,18 +339,16 @@
                     <table class="table table-striped table-bordered table-hover">
                       <thead>
                         <tr>
-                          <th>#</th>
                           <th>Nombre</th>
                           <th>Correo</th>
   
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>Mark</td>
-                          <td>Mac@hotmail.com</td>
-                        </tr>
+
+                      <?php
+                        include('getParticipantes.php');
+                      ?>
   
                       </tbody>
                     </table>
@@ -275,6 +357,9 @@
               </div>
               <!-- End  Basic Table  -->
             </div>
+
+
+
             <div class="col-md-6">
               <!--   Tabla  -->
               <div class="card">
@@ -306,6 +391,9 @@
               </div>
               <!-- End  Basic Table  -->
             </div>
+            
+
+
             <div class="col-md-6">
               <!--   Tabla  -->
               <div class="card">
@@ -317,7 +405,7 @@
                   <div class="row">
                     <div class="form-group col s12">
                       <label for="comentarios">Comentarios</label>
-                      <textarea disabled value="<?php echo (isset($COMENTARIO))?$COMENTARIO." Con IDLOGIN: ".$IDLOGIN." y Nombre: ".$usuarioInvi:'';?>" name="comentarios" id="comentarios" cols="30" rows="5"
+                      <textarea disabled value="<?php echo (isset($COMENTARIO))?$COMENTARIO." Con IDINTERCAMBIO: ".$IDINTERCAMBIO:'';?>" name="comentarios" id="comentarios" cols="30" rows="5"
                         class="form-control"></textarea>
                     </div>
                   </div>
@@ -372,7 +460,8 @@
   <script src="assets/js/custom-scripts.js"></script>
 
   <!-- Vue script -->
-	<script src="./js/invitacioneApp.js"></script>
+	<!-- <script src="./js/invitacioneApp.js"></script> -->
+  <script src="./js/amigosApp.js"></script>
 
 </body>
 
