@@ -153,11 +153,11 @@
 												<th>Eliminar</th>
 											</tr>
 										</thead>
-										<tbody v-for="amigo in amigos">
+										<tbody v-for="row in allData">
 											<tr>
-												<td>{{amigo.id}}</td>
-												<td>{{amigo.nombre}}</td>
-												<td>{{amigo.correo}}</td>
+												<td>{{row.idAmigo}}</td>
+												<td>{{row.nombreAmigo}}</td>
+												<td>{{row.correoAmigo}}</td>
 												<td> <a class="waves-effect waves-light btn btn-danger" @click="eliminarAmigo(amigo.id)"><i class="material-icons right">delete</i></a></td>
 											</tr>
 											
