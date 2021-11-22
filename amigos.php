@@ -17,7 +17,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 		<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
 		<!-- vue -->
-		<script src="https://cdn.jsdelivr.net/npm/vue@3.0.2"></script>
+		<script src="https://unpkg.com/vue@next"></script>
 		<!-- axios -->
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -144,20 +144,18 @@
 							</div>
 							<div class="card-content">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover">
+									<table  class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
-												<th>#</th>
 												<th>Nombre</th>
 												<th>Correo</th>
 												<th>Eliminar</th>
 											</tr>
 										</thead>
-										<tbody v-for="row in allData">
-											<tr>
-												<td>{{row.idAmigo}}</td>
-												<td>{{row.nombreAmigo}}</td>
-												<td>{{row.correoAmigo}}</td>
+										<tbody >
+											<tr v-for="amigo in allData">
+												<td>{{amigo.Usuario}}</td>
+												<td>{{amigo.Correo}}</td>
 												<td> <a class="waves-effect waves-light btn btn-danger" @click="eliminarAmigo(amigo.id)"><i class="material-icons right">delete</i></a></td>
 											</tr>
 											

@@ -8,6 +8,30 @@
     $data = array();
     $idUsuario = $idLogin;
     
+    if($receveid_data->action == 'fetchall'){
+
+        $query = "SELECT * FROM tb_amigos WHERE IDLOGIN='".$idUsuario."';";
+
+        $resultado = mysqli_query($conexion, $query);
+
+        while($row = mysqli_fetch_assoc($resultado)){
+            $idAmigo = $row["IDLOGINAMIGO"];
+            // $data[] = $idAmigo;
+            $consulta = "SELECT * FROM tb_usuarios WHERE IDLOGIN ='".$idAmigo."'";
+            $res = mysqli_query($conexion, $consulta);
+            while($row1 = mysqli_fetch_assoc($res)){
+                // foreach($resultado as $row){
+                //     $data['idAmigo'] = $row['IDLOGIN'];
+                //     $data['nombreAmigo'] = $row['Usuario'];
+                //     $data['passAmigo'] = $row['Contraseña'];
+                //     $data['aliasAmigo'] = $row['Alias'];
+                //     $data['correoAmigo'] = $row['Correo'];
+                // }
+                $data[] = $row1;
+            }
+        }
+        echo json_encode($data);
+    };
     if($receveid_data->action == 'check'){
         
         $nombre = $receveid_data->nombreAmigo;
@@ -44,28 +68,4 @@
             echo json_encode($output);
         }
     };
-    if($receveid_data->action == 'fetchall'){
-
-        $query = "SELECT * FROM tb_amigos WHERE IDLOGIN='".$idUsuario."';";
-
-        $resultado = mysqli_query($conexion, $query);
-
-        while($row = mysqli_fetch_assoc($resultado)){
-            $idAmigo = $row["IDLOGINAMIGO"];
-            // $data[] = $idAmigo;
-            $consulta = "SELECT * FROM tb_usuarios WHERE IDLOGIN ='".$idAmigo."'";
-            $res = mysqli_query($conexion, $consulta);
-            while($row1 = mysqli_fetch_assoc($res)){
-                // foreach($resultado as $row){
-                //     $data['idAmigo'] = $row['IDLOGIN'];
-                //     $data['nombreAmigo'] = $row['Usuario'];
-                //     $data['passAmigo'] = $row['Contraseña'];
-                //     $data['aliasAmigo'] = $row['Alias'];
-                //     $data['correoAmigo'] = $row['Correo'];
-                // }
-                $data[] = $row1;
-            }
-        }
-        echo json_encode($data);
-    }
 ?>

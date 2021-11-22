@@ -3,15 +3,16 @@ const app = Vue.createApp({
         return{
             nombre: '',
             email: '',
-            amigos: [],
-            allData: ''
+            allData: [],
+            nombreamigo: '',
+            correoamigo: ''
         }
     },
     methods: {
         fecthAllData: function(){
             axios.post('amigosDB.php',{
                 action: 'fetchall'
-            }).then(function(response){
+            }).then(response => {
                 this.allData = response.data
                 console.log(this.allData)
             })
@@ -21,9 +22,12 @@ const app = Vue.createApp({
                 action: 'check',
                 nombreAmigo: nombre,
                 correoAmigo: email
-            }).then(function(response){
+            }).then(response =>{
+                this.nombre= '',
+                this.email='',
+                this.fecthAllData()
+                console.log(allData[0].Usuario)
                 alert(response.data.message)
-                console.log(response.data.nombre)
             })
         },
         // eliminarAmigo: function(numero){
@@ -37,7 +41,7 @@ const app = Vue.createApp({
             
         // },
     },
-    created:function(){
+    created(){
         this.fecthAllData()
     }
 
