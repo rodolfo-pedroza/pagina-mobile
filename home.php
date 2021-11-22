@@ -107,7 +107,7 @@
 						<a href="intercambios.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i> Mis Intercambios</a>
 					</li>
                                         <li>
-						<a href="invitaciones.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i>Invitaciones</a>
+						<a href="invitaciones.php" class="waves-effect waves-dark"><i class="fa fa-inbox"></i>Invitaciones</a>
 					</li>
 				</ul>
 

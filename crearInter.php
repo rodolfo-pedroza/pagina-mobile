@@ -86,7 +86,7 @@
 							<a href="intercambios.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i> Mis Intercambios</a>
 						</li>
 											<li>
-							<a href="invitaciones.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i>Invitaciones</a>
+							<a href="invitaciones.php" class="waves-effect waves-dark"><i class="fa fa-inbox"></i>Invitaciones</a>
 						</li>
 					</ul>
 	
@@ -109,10 +109,10 @@
 									Datos del Intercambio 
 								</div>
 								<div class="card-content">
-									<form class="col s12">
+									<form class="col s12" action="IntercambiosBD.php" method="post">
 										<div class="row">
 											<div class="input-field col s12">
-												<input v-model="nombreIntercambio" id="interName" type="text" class="validate">
+												<input v-model="nombreIntercambio" id="interName" type="text" class="validate" name="nombreIntercambio">
 												<label for="interName">Nombre del Intercambio</label>
 											</div>
 										</div>
@@ -120,7 +120,7 @@
 											<div class="form-group col s12">
 												<label for="tema">Selecciona un tema</label>
 												<!-- display de temas con Vue -->
-												<select id="tema" class="form-control" v-model="tema">
+												<select id="tema" class="form-control" v-model="tema" name="tema">
 													<option disabled value="">Seleccione un tema</option>
 													<option v-for="tema in temas" :value="tema" >{{tema}}</option>
 												</select>
@@ -128,7 +128,7 @@
 										</div>
 										<div class="row">
 											<div class="input-field col s12">
-												<input v-model="monto" id="monto" type="number" class="validate">
+												<input v-model="monto" id="monto" type="number" class="validate" name="monto">
 												<label for="monto">Monto</label>
 											</div>
 										</div>
@@ -144,7 +144,7 @@
 											<div class="form-group col s12">
 												<div class='input-group date'>
 													<label  for="fechalimite">Fecha Limite de registro</label>
-													<input v-model="fechaLimite" type="date" id="fechalimite" name="trip-start"  min="2021-01-01" max="2030-12-31">
+													<input v-model="fechaLimite" type="date" id="fechalimite" name="trip-start-l"  min="2021-01-01" max="2030-12-31">
 												</div>
 											</div>
 										</div>
@@ -206,7 +206,8 @@
 												<i class="material-icons right">navigate_next</i>
 												Crear Intercambio 
 											</a> -->
-											<a class="waves-effect waves-light btn " @click="agregarIntercambio(nombreIntercambio,tema, monto, fechaIntercambio, fechaLimite, comentarios)"><i class="material-icons right">navigate_next</i>Crear Intercambio </a>
+											<!-- <a class="waves-effect waves-light btn " @click="agregarIntercambio(nombreIntercambio,tema, monto, fechaIntercambio, fechaLimite, comentarios)"><i class="material-icons right">navigate_next</i>Crear Intercambio </a> -->
+											<input class="waves-effect waves-light btn " type="submit" value="Crear Intercambio">
 										</div>
 									</form>
 									<div class="clearBoth"></div>
@@ -248,7 +249,7 @@
 
 	<!-- Vue script -->
 	<script src="./js/crearIntApp.js"></script>
-	<script src="./js/CrearIntercambioApp.js"></script>
+	<!-- <script src="./js/CrearIntercambioApp.js"></script> -->
 	
 </body>
 

@@ -1,4 +1,39 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    ini_set('displays_errors', 1);
+    error_reporting(E_ALL);
+
+    include('db.php');
+
+    $clave = $_POST['clave'];
+    //echo $clave;
+    $sql = "SELECT tb_intercambio.NOMBRE, tb_intercambio.TEMA, tb_intercambio.MONTO, tb_intercambio.FECHALIMITE, tb_intercambio.FECHAINTERCAMBIO, tb_intercambio.COMENTARIO, tb_intercambio.IDLOGIN, tb_usuarios.Usuario, tb_usuarios.Correo FROM tb_intercambio join tb_usuarios on tb_intercambio.IDLOGIN = tb_usuarios.IDLOGIN where tb_intercambio.CLAVE = '$clave'";
+    $res = mysqli_query($conexion, $sql) or die("No se encontro");
+    
+    if (mysqli_num_rows($res) > 0){
+        while($row = mysqli_fetch_assoc($res)){
+            //echo "Usuario: ".$row["Usuario"]. "<br>" . "Alias: ".$row["Alias"]. "<br>" ;
+            $nombreIntercambioInvi = $row["NOMBRE"];
+            $TEMA = $row["TEMA"];
+            $MONTO = $row["MONTO"]; 
+            $FECHALIMITE = $row["FECHALIMITE"];
+            $FECHAINTERCAMBIO = $row["FECHAINTERCAMBIO"];
+            $COMENTARIO = $row["COMENTARIO"];
+            $IDLOGIN = $row["IDLOGIN"];
+            $usuarioInvi = $row["Usuario"];
+            $correoInvi = $row["Correo"];
+            //$contra = $row["Contraseña"];
+        }
+    }else {
+        echo "0 results";
+    }
+    //echo "Grande";
+    //header("location: invitaciones.php");    
+    mysqli_close($conexion);
+
+
+?>
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -50,7 +85,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand waves-effect waves-dark" href="home.html"><i
+          <a class="navbar-brand waves-effect waves-dark" href="home.php"><i
               class="large material-icons">card_giftcard</i> <strong>Home</strong></a>
   
           <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
@@ -58,7 +93,10 @@
         <ul class="nav">
           <li>
             <a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1">
-              <i class="fa fa-user fa-fw"></i> <b>{{user}}</b>
+              <?php
+							  include('GetData.php');
+						  ?>
+              <i class="fa fa-user fa-fw"></i> <b><?php echo $usuario?></b>
               <i class="material-icons right">arrow_drop_down</i>
             </a>
           </li>
@@ -66,7 +104,7 @@
       </nav>
       <!-- Dropdown Structure -->
       <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
+        <li><a href="Log_Out.php"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
         </li>
       </ul>
       <!--/. NAV TOP  -->
@@ -75,10 +113,10 @@
           <ul class="nav" id="main-menu">
   
             <li>
-              <a class="active-menu waves-effect waves-dark" href="home.html"><i class="fa fa-gifts"></i>Home</a>
+              <a class="active-menu waves-effect waves-dark" href="home.php"><i class="fa fa-gifts"></i>Home</a>
             </li>
             <li>
-              <a href="crearInter.html" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
+              <a href="crearInter.php" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
             </li>
             <li>
               <a href="amigos.html" class="waves-effect waves-dark"><i class="fa fa-user"></i>
@@ -93,7 +131,7 @@
               <a href="intercambios.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i> Mis Intercambios</a>
             </li>
             <li>
-              <a href="invitaciones.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i>Invitaciones</a>
+              <a href="invitaciones.php" class="waves-effect waves-dark"><i class="fa fa-inbox"></i>Invitaciones</a>
             </li>
           </ul>
   
@@ -119,17 +157,21 @@
                 <div class="card-content">
   
   
-                  <div class="input-field col s12">
-                    <input id="interName" type="text" class="validate">
-                    <label for="interClave">Clave del intercambio</label>
-                  </div>
+                  
   
   
-  
-                  <a class="waves-effect waves-light btn">
+
+                  <!-- <a class="waves-effect waves-light btn" href="SearchInter.php">
                     <i class="material-icons right">navigate_next</i>
                     Consultar Invitación
-                  </a>
+                  </a> -->
+                  <form action="invitaciones.php" method="post">
+                      <div class="input-field col s12">
+                        <input id="interName" type="text" class="validate" name="clave" value="<?php echo (isset($clave))?$clave:'';?>">
+                        <label for="interClave">Clave del intercambio</label>
+                      </div>
+                      <input class="waves-effect waves-light btn" type="submit" value="Consultar Invitación">
+                  </form>
   
   
   
@@ -153,8 +195,7 @@
                   Nombre del intercambio
                   <div class="row">
                     <div class="input-field col s12">
-                      <input disabled value="No editable" id="disabled" type="text" class="validate">
-  
+                      <input disabled value="<?php echo (isset($nombreIntercambioInvi))?$nombreIntercambioInvi:'';?>" id="disabled" type="text" class="validate">
                     </div>
                   </div>
   
@@ -162,7 +203,7 @@
                   Temas
                   <div class="row">
                     <div class="input-field col s12">
-                      <input disabled value="No editable" id="disabled" type="text" class="validate">
+                      <input disabled value="<?php echo (isset($TEMA))?$TEMA:'';?>" id="disabled" type="text" class="validate">
   
                     </div>
                   </div>
@@ -171,7 +212,7 @@
                   Monto
                   <div class="row">
                     <div class="input-field col s12">
-                      <input disabled value="No editable" id="disabled" type="text" class="validate">
+                      <input disabled value="<?php echo (isset($MONTO))?$MONTO:'';?>" id="disabled" type="text" class="validate">
   
                     </div>
                   </div>
@@ -180,7 +221,7 @@
                   Fecha limite
                   <div class="row">
                     <div class="input-field col s12">
-                      <input disabled value="No editable" id="disabled" type="text" class="validate">
+                      <input disabled value="<?php echo (isset($FECHALIMITE))?$FECHALIMITE:'';?>" id="disabled" type="text" class="validate">
   
                     </div>
                   </div>
@@ -189,7 +230,7 @@
                   Fecha del intercambio
                   <div class="row">
                     <div class="input-field col s12">
-                      <input disabled value="No editable" id="disabled" type="text" class="validate">
+                      <input disabled value="<?php echo (isset($FECHAINTERCAMBIO))?$FECHAINTERCAMBIO:'';?>" id="disabled" type="text" class="validate">
   
                     </div>
                   </div>
@@ -238,6 +279,37 @@
               <!--   Tabla  -->
               <div class="card">
                 <div class="card-action">
+                  Creador
+                </div>
+                <div class="card-content">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Nombre</th>
+                          <th>Correo</th>
+  
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><?php echo (isset($IDLOGIN))?$IDLOGIN:'';?></td>
+                          <td><?php echo (isset($usuarioInvi))?$usuarioInvi:'';?></td>
+                          <td><?php echo (isset($correoInvi))?$correoInvi:'';?></td>
+                        </tr>
+  
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- End  Basic Table  -->
+            </div>
+            <div class="col-md-6">
+              <!--   Tabla  -->
+              <div class="card">
+                <div class="card-action">
   
                 </div>
   
@@ -245,11 +317,11 @@
                   <div class="row">
                     <div class="form-group col s12">
                       <label for="comentarios">Comentarios</label>
-                      <textarea disabled value="No editable" name="comentarios" id="comentarios" cols="30" rows="5"
+                      <textarea disabled value="<?php echo (isset($COMENTARIO))?$COMENTARIO." Con IDLOGIN: ".$IDLOGIN." y Nombre: ".$usuarioInvi:'';?>" name="comentarios" id="comentarios" cols="30" rows="5"
                         class="form-control"></textarea>
                     </div>
                   </div>
-                  <div class="row">
+                  <!-- <div class="row">
                     <a class="waves-effect waves-light btn btn-primary">
                       <i class="material-icons right">thumb_up</i>
                       Aceptar
@@ -258,7 +330,7 @@
                       <i class="material-icons right">thumb_down</i>
                       Rechazar
                     </a>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <!-- End  Basic Table  -->

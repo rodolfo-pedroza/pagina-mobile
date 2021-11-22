@@ -3,29 +3,31 @@
     error_reporting(E_ALL);
 
     include('db.php');
-    $receveid_data = json_decode(file_get_contents("php://input"));
-    $data = array();
-
-    $nombreIntercambio = $receveid_data->nombreIntercambio;
-    $tema = $receveid_data->tema;
-    $monto = $receveid_data->monto;
-    $fechaIntercambio = $receveid_data->fechaIntercambio;
-    $fechaLimite = $receveid_data->fechaLimite;
-    $comentarios = $receveid_data->comentarios;
-    $clave = "PruebaClave1";
+    
+    $nombreIntercambio = $_POST['nombreIntercambio'];
+    $tema = $_POST['tema'];
+    $monto = $_POST['monto'];
+    $fechaIntercambio = $_POST['trip-start'];
+    $fechaLimite = $_POST['trip-start-l'];
+    $comentarios = $_POST['comentarios'];
+    $clave = substr($tema,0,3).substr($nombreIntercambio,0,3).substr($tema,4).substr($nombreIntercambio,4);
     include('GetData.php');
+    include('db.php');
     $idUsuario = $idLogin;
 
-    echo "Grande";
-    if($receveid_data->action == 'check'){
-        
-        $query = "INSERT INTO tb_intercambio (CLAVE, NOMBRE, TEMA, MONTO, FECHALIMITE, FECHAINTERCAMBIO, COMENTARIO, IDLOGIN)
-        VALUES ('$clave', '$nombreIntercambio', '$tema', '$monto', '$fechaLimite', '$fechaIntercambio', '$comentarios', '$idUsuario');";
+    $query = "INSERT INTO tb_intercambio (CLAVE, NOMBRE, TEMA, MONTO, FECHALIMITE, FECHAINTERCAMBIO, COMENTARIO, IDLOGIN)
+    VALUES ('$clave', '$nombreIntercambio', '$tema', '$monto', '$fechaLimite', '$fechaIntercambio', '$comentarios', '$idUsuario');";
        
-        $resultado = mysqli_query($conexion, $query)  or die("error de registro");
+    $resultado = mysqli_query($conexion, $query)  or die("error de registro");
+
+    
+    // if($receveid_data->action == 'check'){
+        
+        
 
         
-        //header("location: crearInter.php");
-    };
+    // 
+    // };
+    header("location: home.php");
     mysqli_close($conexion);
 ?>

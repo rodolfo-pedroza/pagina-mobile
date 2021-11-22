@@ -6,7 +6,11 @@ const app1 = Vue.createApp({
             monto: '',
             fechaIntercambio: '',
             fechaLimite: '',
-            comentarios: ''
+            comentarios: '',
+            amigos: '',
+            invitados: '',
+            temas: '',
+            agregarAmigo: ''
         }
     },
     methods: {
@@ -20,7 +24,7 @@ const app1 = Vue.createApp({
             // this.amigos.push({id: lastId+=1, nombre: nombre, correo: email})
             // this.nombre= ''
             // this.email= ''
-            axios.post('IntercambiosDB.php',{
+            axios.post('IntercambiosBD.php',{
                 action: 'check',
                 nombreIntercambio: nombreIntercambio,
                 tema: tema,
@@ -29,11 +33,11 @@ const app1 = Vue.createApp({
                 fechaLimite: fechaLimite,
                 comentarios: comentarios
             }).then(function(response){
-                alert(response.data.id)
+                alert(response.data.message)
             })
         }
     
     }
 })
 
-app.mount('#app')
+app1.mount('#app')
