@@ -11,12 +11,17 @@
 
     // echo $usuario." ".$password." ".$alias." ".$correo;
 
-    $consulta = "INSERT INTO tb_usuarios (Usuario, Contraseña, Alias, Correo)
+    $sql = "INSERT INTO tb_usuarios (Usuario, Contraseña, Alias, Correo) 
     VALUES ('$usuario', '$password', '$alias', '$correo');";
 
-    $resultado = mysqli_query($conexion, $consulta)  or die("error de registro");
+    $resultado = mysqli_query($conexion, $sql)  or die("error de registro");
 
     header("location: ingresar.html");
+    // if ($conexion->query($sql) === TRUE) {
+    //     echo "New record created successfully";
+    //   } else {
+    //     echo "Error: " . $sql . "<br>" . $conexion->error;
+    //   }
 
     mysqli_close($conexion);
 

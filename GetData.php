@@ -7,24 +7,24 @@
     //Conectar con usuario
     //$alias=$_SESSION["alias"];
 
-    $sql = "SELECT Usuario, Alias, Correo FROM tb_usuarios where Usuario = '$usuario'";
+    $sql = "SELECT IDLOGIN, Usuario, Alias, Correo FROM tb_usuarios where Usuario = '$usuario'";
     $res = mysqli_query($conexion, $sql) or die("No se encontro");
-    $receivedData = json_decode(file_get_contents("php://input"));
+    //$receivedData = json_decode(file_get_contents("php://input"));
     //echo "<h1>$res</h1>";
     //echo "El usuario es: $usuario";
 
-    if($receivedData->action == 'insert'){
-        $data = array(
-            ':nombreIntercambio' => $receivedData->nombreIntercambio
-        );
+    // if($receivedData->action == 'insert'){
+    //     $data = array(
+    //         ':nombreIntercambio' => $receivedData->nombreIntercambio
+    //     );
         
-        // echo($data);
-        $output = array(
-            'message' => 'Data Inserted'
-        );
+    //     // echo($data);
+    //     $output = array(
+    //         'message' => 'Data Inserted'
+    //     );
 
-        echo json_encode($output);
-    }
+    //     echo json_encode($output);
+    // }
 
     
     if (mysqli_num_rows($res) > 0){
@@ -33,6 +33,8 @@
             $usuario = $row["Usuario"];
             $alias = $row["Alias"];
             $correo = $row["Correo"];
+            $idLogin = $row["IDLOGIN"];
+            //$contra = $row["Contraseña"];
         }
     }else {
         echo "0 results";

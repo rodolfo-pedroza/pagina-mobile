@@ -48,7 +48,10 @@
 				<ul class="nav">
 					<li>
 						<a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1">
-							<i class="fa fa-user fa-fw"></i> <b>user</b> 
+						<?php
+							include('GetData.php');
+						?>
+							<i class="fa fa-user fa-fw"></i> <b><?php echo $usuario?></b> 
 							<i class="material-icons right">arrow_drop_down</i>
 						</a>
 					</li>
@@ -56,7 +59,7 @@
 			</nav>
 			<!-- Dropdown Structure -->
 			<ul id="dropdown1" class="dropdown-content">
-				<li><a href="#"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
+				<li><a href="Log_Out.php"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
 				</li>
 			</ul>
 			<!--/. NAV TOP  -->
@@ -65,11 +68,11 @@
 					<ul class="nav" id="main-menu">
 	
 						<li>
-							<a class="active-menu waves-effect waves-dark" href="home.html"><i
+							<a class="active-menu waves-effect waves-dark" href="home.php"><i
 									class="fa fa-gifts"></i>Home</a>
 						</li>
 						<li>
-							<a href="crearInter.html" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
+							<a href="crearInter.php" class="waves-effect waves-dark"><i class="fa fa-gift"></i> Empezar Intercambio</a>
 						</li>
 						<li>
 							<a href="amigos.html" class="waves-effect waves-dark"><i class="fa fa-user"></i>
@@ -199,10 +202,11 @@
 											</div>
 										</div>
 										<div class="row">
-											<a href="#" class="waves-effect waves-light btn" @click="insertData">
+											<!-- <a href="#" class="waves-effect waves-light btn" @click="insertData">
 												<i class="material-icons right">navigate_next</i>
 												Crear Intercambio 
-											</a>
+											</a> -->
+											<a class="waves-effect waves-light btn " @click="agregarIntercambio(nombreIntercambio,tema, monto, fechaIntercambio, fechaLimite, comentarios)"><i class="material-icons right">navigate_next</i>Crear Intercambio </a>
 										</div>
 									</form>
 									<div class="clearBoth"></div>
@@ -244,6 +248,7 @@
 
 	<!-- Vue script -->
 	<script src="./js/crearIntApp.js"></script>
+	<script src="./js/CrearIntercambioApp.js"></script>
 	
 </body>
 

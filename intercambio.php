@@ -17,12 +17,12 @@
             ':invitados' => $received_data->invitados,
             ':comentarios' => $received_data->comentarios
         );
-
+        
         // $clave = 1234;
         // $idTema = 0;
         // $idParticipantes = 0;
         // $idLogin = 0;
-        // $query = "INSERT INTO tb_intercambio(CLAVE, NOMBRE, IDPARTICIPANTES, IDTEMAS, MONTO, FECHALIMITE, FECHAINTERCAMBIO, COMENTARIO, IDLOGIN)
+        //$query = "INSERT INTO tb_intercambio(CLAVE, NOMBRE, IDPARTICIPANTES, IDTEMAS, MONTO, FECHALIMITE, FECHAINTERCAMBIO, COMENTARIO, IDLOGIN)
         // VALUES ('$clave', :nombre, '$idParticipantes', '$idTema', :monto, :fechaLimite, :fechaIntercambio, :comentarios, '$idLogin');";
         
         // // $resultado = mysqli_query($conexion, $query)  or die("error de registro");
