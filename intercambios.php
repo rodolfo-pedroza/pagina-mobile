@@ -126,7 +126,7 @@
 								</div>
 								<div class="card-content">
 									<span class="card-title grey-text text-darken-4">{{item.NOMBRE}}</span>
-									<a href="#" class="waves-effect waves-light btn">
+									<a @click="detalles(item.IDINTERCAMBIO)" class="waves-effect waves-light btn">
 										<i class="material-icons right">card_giftcard</i> Ver Detalles
 									</a>
 								</div>

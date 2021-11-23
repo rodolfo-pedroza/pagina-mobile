@@ -2,31 +2,50 @@ const app = Vue.createApp({
     data(){
         //los datos se deberan de sacar de la DB
         return{
-            nombreIntercambio: 'Intercambio de pardo',
-            selected: 'Navidad', //tema escogio originalmente
-            temas: ['Navidad', 'Cumpleanos','Ano nuevo'],            
+            nombreIntercambio: '',
+            selected: '', //tema escogio originalmente
+            temas: ['Navidad', 'Cumpleanos','Año nuevo'],            
             monto: 500,
-            fechalimite: '2021-12-18',
-            fechaIntercambio: '2021-12-25',
-            clave: 'IntercambioPardo12-25',
-            invitados: [
-                {id: 1, nombre: 'rodo', correo: 'ejemplo@gmail.com'},
-                {id: 2, nombre: 'arturo', correo: 'ejemplo1@gmail.com'},
-                {id: 3, nombre: 'rodrigo', correo: 'ejemplo2@gmail.com'},
-                {id: 4, nombre: 'melissa', correo: 'ejemplo3@gmail.com'},
-                {id: 5, nombre: 'andrea', correo: 'ejemplo4@gmail.com'},
-                {id: 6, nombre: 'daniel', correo: 'ejemplo5@gmail.com'}
-            ],
-            comentarios: 'Tienen que venir disfrazados de elefantes'
+            fechalimite: '',
+            fechaIntercambio: '',
+            clave: '',
+            invitados: '',
+            comentarios: '',
+            clave: '',
+            allData: '',
+            participantes: '',
+            tema: '',
         }
     },
     methods: {
+        fetchAllData: function(){
+            axios.post('detallesIntercambio.php', {
+                action: 'fetchall'
+            }).then( response => {
+                console.log(response.data)
+                this.allData = response.data[0]
+                this.nombreIntercambio = this.allData.NOMBRE
+                this.selected = this.allData.TEMA
+                this.monto = this.allData.MONTO
+                this.fechalimite = this.allData.FECHALIMITE
+                this.fechaIntercambio = this.allData.FECHAINTERCAMBIO
+                this.comentarios = this.allData.COMENTARIO
+                this.clave = this.allData.CLAVE
+                response.data.splice(0,1)
+                this.participantes = response.data
+                // console.log(this.participantes )
+            })
+        },
         cambiarNombre: function(nombre){
             this.nombreIntercambio = nombre
             console.log(this.nombreIntercambio)
         },
         cambiarTema: function(tema){
-            this.selected = tema
+            this.tema = tema
+            console.log(this.selected)
+        },
+        onchange: function() {
+            this.tema = tema
             console.log(this.selected)
         },
         cambiarMonto: function(monto){
@@ -45,35 +64,36 @@ const app = Vue.createApp({
             this.comentarios = texto
             console.log(this.comentarios)
         },
-        eliminarInvitado: function(numero){
-            numero -= 1
-            if(numero > -1){
-                this.invitados.splice(numero,1)
-                for (var i = numero; i < this.invitados.length; i++) {
-                    if(i <= this.invitados[i].id){ 
-                        this.invitados[i].id-=1
-                    }         
-                }
-            }
-        },
+        eliminarParticipante: function(idlogin){
+            console.log(idlogin)
+            axios.post('detallesIntercambio.php',{
+                action: 'delete',
+                IDLOGIN: idlogin
+            }).then(response => {
+                this.fetchAllData()
+                alert(response.data.message)
+            })
+         },
         guardarCambios: function(){
-            axios.post('getData.php', {
+            console.log(this.comentarios)
+            axios.post('detallesIntercambio.php', {
                 action:'insert',
-                nombreIntercambio: this.nombreIntercambio
+                nombre: this.nombreIntercambio,
+                tema: this.tema,
+                monto: this.monto,
+                fechaLimite: this.fechaLimite,
+                fechaIntercambio: this.fechaIntercambio,
+                comentarios: this.comentarios
             })
-            .then(function(response){
-                // console.log('se mando')
+            .then( response =>{
+                this.fetchAllData()
                 console.log(response.data.message)
-            })
-            .catch(function(error){
-                console.log(error)
-                console.log('error')
             })
         }
     },
-    // components: {
-    //     'col-invitado':
-    // }
+    created(){
+        this.fetchAllData()
+    }
 })
 
 

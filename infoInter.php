@@ -90,7 +90,7 @@
             <div id="page-wrapper">
                 <div class="header">
                     <h1 class="page-header ">
-                        {{nombreIntercambio}}
+                        {{allData.NOMBRE}}
                     </h1>
                     <div class="card" style="width: 30rem ; margin-left: auto; margin-right: auto;">
                         <div class="card-image waves-effect waves-block waves-light">
@@ -126,7 +126,7 @@
                                 <div class="row">
                                     <div class="input-field col s10">
                                         <!-- display de temas con Vue -->
-                                        <select id="tema" class="form-control" v-model="selected">
+                                        <select id="tema" class="form-control" >
                                             <option v-for="tema in temas" :value="tema" >{{tema}}</option>
                                         </select>
                                     </div>
@@ -155,10 +155,9 @@
                                 <div class="row">
                                     <div class="input-field col s10">
                                         <input type="date" id="fechalimite" v-model="fechalimite" min="2021-01-01" max="2030-12-31">
-                                        <!-- <input disabled value="No editable" id="disabled" type="text" class="validate"> -->
                                     </div>
                                     <div class="input-field col s2">
-                                        <a id="edit1" class="waves-effect waves-light btn btn-primary" @click="cambiarFecha(fechalimite)">
+                                        <a id="edit1" class="waves-effect waves-light btn btn-primary" @click="cambiarFechaLimite(fechalimite)">
                                             <i class="material-icons right">edit</i>
                                         </a>
                                     </div>
@@ -168,10 +167,10 @@
                                 Fecha del intercambio
                                 <div class="row">
                                     <div class="input-field col s10">
-                                        <input type="date" id="fechalimite" v-model="fechaIntercambio" min="2021-01-01" max="2030-12-31">                
+                                        <input type="date" id="fechaIntercambio" v-model="fechaIntercambio" min="2021-01-01" max="2030-12-31">                
                                     </div>
                                     <div class="input-field col s2">
-                                        <a id="edit1" class="waves-effect waves-light btn btn-primary" @click="cambiarFechaIntercambio(fechaIntercambio)">
+                                        <a id="edit" class="waves-effect waves-light btn btn-primary" @click="cambiarFechaIntercambio(fechaIntercambio)">
                                             <i class="material-icons right">edit</i>
                                         </a>
                                     </div>
@@ -197,18 +196,16 @@
                                     <table class="table table-striped table-bordered table-hover" >
                                         <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>Nombre</th>
                                                 <th>Correo</th>     
                                                 <th>Eliminar</th>     
                                             </tr>
                                         </thead>
-                                        <tbody v-for="invitado in invitados">
+                                        <tbody v-for="participante in participantes">
                                             <tr >
-                                                <td>{{invitado.id}}</td>
-                                                <td>{{invitado.nombre}}</td>
-                                                <td>{{invitado.correo}}</td>
-                                                <td> <a class="waves-effect waves-light btn btn-danger" @click="eliminarInvitado(invitado.id)"><i class="material-icons right">delete</i></a></td>
+                                                <td>{{participante.Usuario}}</td>
+                                                <td>{{participante.Correo}}</td>
+                                                <td> <a class="waves-effect waves-light btn btn-danger" @click="eliminarParticipante(participante.IDLOGIN)"><i class="material-icons right">delete</i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>

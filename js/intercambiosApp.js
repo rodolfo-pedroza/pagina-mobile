@@ -1,11 +1,6 @@
 const app = Vue.createApp({
     data(){
         return{
-            // itemList: [
-            //     {id: 0, text:'rodolfo', image: "images/regalos.jpg"},
-            //     {id: 1, text:'arturo', image: "images/iconoregalo1.jpg"},
-            //     {id: 2, text:'daniel', image: "images/iconoregalo.jpg"}
-            // ],
             allData: '',
             imageList: [ 'images/regalos.jpg', 'images/iconoregalo1.jpg', 'images/iconoregalo.jpg'],
             random: parseInt(Math.random() * (3)),
@@ -17,10 +12,18 @@ const app = Vue.createApp({
                 action: 'fetchall'
             }).then( response => {
                 this.allData = response.data
-                console.log(this.random)
                 console.log(this.allData)
             })
         },
+        detalles: function(clave){
+            axios.post('mostrarIntercambios.php', {
+                action: 'intercambio',
+                intercambio: clave    
+            }).then(response => {
+                window.location = "infoInter.php"
+                // console.log(response.data.clave)
+            })
+        }
     },
     created(){
         this.fetchAllData()
