@@ -15,6 +15,7 @@ const app = Vue.createApp({
             allData: '',
             participantes: '',
             tema: '',
+            fecha: ''
         }
     },
     methods: {
@@ -25,7 +26,7 @@ const app = Vue.createApp({
                 console.log(response.data)
                 this.allData = response.data[0]
                 this.nombreIntercambio = this.allData.NOMBRE
-                this.selected = this.allData.TEMA
+                this.tema = this.allData.TEMA
                 this.monto = this.allData.MONTO
                 this.fechalimite = this.allData.FECHALIMITE
                 this.fechaIntercambio = this.allData.FECHAINTERCAMBIO
@@ -42,11 +43,7 @@ const app = Vue.createApp({
         },
         cambiarTema: function(tema){
             this.tema = tema
-            console.log(this.selected)
-        },
-        onchange: function() {
-            this.tema = tema
-            console.log(this.selected)
+            console.log(this.tema)
         },
         cambiarMonto: function(monto){
             this.monto = monto
@@ -75,13 +72,15 @@ const app = Vue.createApp({
             })
          },
         guardarCambios: function(){
-            console.log(this.comentarios)
+            // console.log(this.fecha)
+            // console.log(this.fechaIntercambio)
+            // console.log(this.tema)
             axios.post('detallesIntercambio.php', {
                 action:'insert',
                 nombre: this.nombreIntercambio,
                 tema: this.tema,
                 monto: this.monto,
-                fechaLimite: this.fechaLimite,
+                fechaLimite: this.fechalimite,
                 fechaIntercambio: this.fechaIntercambio,
                 comentarios: this.comentarios
             })

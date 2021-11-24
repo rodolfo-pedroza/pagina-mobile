@@ -126,12 +126,12 @@
                                 <div class="row">
                                     <div class="input-field col s10">
                                         <!-- display de temas con Vue -->
-                                        <select id="tema" class="form-control" >
+                                        <select id="tema" class="form-control" v-model="tema" >
                                             <option v-for="tema in temas" :value="tema" >{{tema}}</option>
                                         </select>
                                     </div>
                                     <div class="input-field col s2">
-                                        <a id="edit1" class="waves-effect waves-light btn btn-primary" @click="cambiarTema(selected)">
+                                        <a id="edit1" class="waves-effect waves-light btn btn-primary" @click="cambiarTema(tema)">
                                             <i class="material-icons right">edit</i>
                                         </a>
                                     </div>

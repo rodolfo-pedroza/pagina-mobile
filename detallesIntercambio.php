@@ -45,15 +45,14 @@
         echo json_encode($output);
     };
     if($receveid_data->action == 'insert'){
-        
-       
-            $nombre = $receveid_data->nombre;
-            $tema = $receveid_data->tema;
-            $monto = $receveid_data->monto;
-            $fechaLimite = $receveid_data->fechaLimite;
-            $fechaIntercambio = $receveid_data->fechaIntercambio;
-            $comentarios = $receveid_data->comentarios;
-        
+               
+        $nombre = $receveid_data->nombre;
+        $tema = $receveid_data->tema;
+        $monto = $receveid_data->monto;
+        $fechaLimite = $receveid_data->fechaLimite;
+        $fechaIntercambio = $receveid_data->fechaIntercambio;
+        $comentarios = $receveid_data->comentarios;
+    
         
         $query = "UPDATE tb_intercambio SET NOMBRE='".$nombre."', TEMA='".$tema."', MONTO='".$monto."', FECHALIMITE='".$fechaLimite."', FECHAINTERCAMBIO='".$fechaIntercambio."', COMENTARIO='".$comentarios."' WHERE IDLOGIN='".$IDINTERCAMBIO."';";
         $resultado = mysqli_query($conexion, $query);
