@@ -125,7 +125,7 @@
 						<div class="col-md-8 cols-sm-8">
 							<div class="card" style="width: 30rem ; margin-left: auto; margin-right: auto;">
 								<div class="card-image waves-effect waves-block waves-light">
-									<img v-bind:src="imageList[random]" v-bind:alt="imageList[random]">
+									<img v-bind:src="imageList[random]" v-bind:alt="imageList[random] " >
 								</div>
 								<div class="card-content">
 									<span class="card-title grey-text text-darken-4">{{item.NOMBRE}}</span>

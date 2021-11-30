@@ -15,7 +15,8 @@ const app = Vue.createApp({
             allData: '',
             participantes: '',
             tema: '',
-            fecha: ''
+            fecha: '',
+            data: ''
         }
     },
     methods: {
@@ -32,9 +33,10 @@ const app = Vue.createApp({
                 this.fechaIntercambio = this.allData.FECHAINTERCAMBIO
                 this.comentarios = this.allData.COMENTARIO
                 this.clave = this.allData.CLAVE
-                response.data.splice(0,1)
-                this.participantes = response.data
-                // console.log(this.participantes )
+                this.data = [...response.data]
+                this.data.splice(0,1)
+                this.participantes = this.data
+                console.log(this.participantes)
             })
         },
         cambiarNombre: function(nombre){
@@ -86,7 +88,7 @@ const app = Vue.createApp({
             })
             .then( response =>{
                 this.fetchAllData()
-                console.log(response.data.message)
+                alert(response.data.message)
             })
         }
     },

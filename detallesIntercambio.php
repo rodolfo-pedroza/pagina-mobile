@@ -54,7 +54,7 @@
         $comentarios = $receveid_data->comentarios;
     
         
-        $query = "UPDATE tb_intercambio SET NOMBRE='".$nombre."', TEMA='".$tema."', MONTO='".$monto."', FECHALIMITE='".$fechaLimite."', FECHAINTERCAMBIO='".$fechaIntercambio."', COMENTARIO='".$comentarios."' WHERE IDLOGIN='".$IDINTERCAMBIO."';";
+        $query = "UPDATE tb_intercambio SET NOMBRE='".$nombre."', TEMA='".$tema."', MONTO='".$monto."', FECHALIMITE='".$fechaLimite."', FECHAINTERCAMBIO='".$fechaIntercambio."', COMENTARIO='".$comentarios."' WHERE IDINTERCAMBIO='".$IDINTERCAMBIO."';";
         $resultado = mysqli_query($conexion, $query);
         
         $output = array(

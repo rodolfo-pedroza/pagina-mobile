@@ -3,7 +3,7 @@ const app = Vue.createApp({
         return{
             allData: '',
             imageList: [ 'images/regalos.jpg', 'images/iconoregalo1.jpg', 'images/iconoregalo.jpg'],
-            random: parseInt(Math.random() * (3)),
+            random: parseInt(Math.random() * (3))
         }
     },
     methods: {
