@@ -81,11 +81,11 @@
 								Agregar Amigos</a>
 						</li>
 						<li>
-							<a href="infoInter.html" class="waves-effect waves-dark"><i class="fa fa-cog"></i> Modificar Intercambios</a>
+							<a href="infoInter.php" class="waves-effect waves-dark"><i class="fa fa-cog"></i> Modificar Intercambios</a>
 						</li>
 	
 						<li>
-							<a href="intercambios.html" class="waves-effect waves-dark"><i class="fa fa-inbox"></i> Mis Intercambios</a>
+							<a href="intercambios.php" class="waves-effect waves-dark"><i class="fa fa-inbox"></i> Mis Intercambios</a>
 						</li>
 											<li>
 							<a href="invitaciones.php" class="waves-effect waves-dark"><i class="fa fa-inbox"></i>Invitaciones</a>
